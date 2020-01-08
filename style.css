@@ -45,7 +45,7 @@ body {
 }
 @media screen and (max-width: 576px), (max-height: 500px) {
   .player {
-    width: 95%;
+    width: 90%;
     padding: 20px;
     margin-top: 75px;
     min-height: initial;

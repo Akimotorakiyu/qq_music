@@ -9,49 +9,16 @@ new Vue({
   el: "#app",
   data() {
     return {
-      audio: null,
-      circleLeft: null,
-      barWidth: null,
-      duration: null,
-      currentTime: null,
-      isTimerPlaying: false,
-      tracks: [
-        {
-          name: "Mekanın Sahibi",
-          artist: "Norm Ender",
-          cover: "1.jpg",
-          source:
-            "https://www.17sucai.com/preview/701365/2017-10-31/%E9%9F%B3%E9%A2%91%E6%8F%92%E4%BB%B6/fukua.mp3",
-          url: "https://www.17sucai.com",
-          favorited: false
-        },
-        {
-          name: "Everybody Knows",
-          artist: "Leonard Cohen",
-          cover: "2.jpg",
-          source:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3",
-          url: "https://www.17sucai.com",
-          favorited: true
-        },
-        {
-          name: "Extreme Ways",
-          artist: "Moby",
-          cover: "3.jpg",
-          source:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/3.mp3",
-          url: "https://www.17sucai.com",
-          favorited: false
-        }
-      ],
-      currentTrack: null,
-      currentTrackIndex: 0,
-      transitionName: null
+      player: new QMplayer({ target: "auto" }),
+      currentTime: 0,
+      duration: 0
     };
   },
   methods: {
     play() {
-      console.log("play");
+      this.player.play(
+        "http://114.80.27.30/amobile.music.tc.qq.com/C400000KNSyr1PmijP.m4a?guid=6257909323&vkey=0A7AF90D5DCE4B3CF558CC702C212370383A6A5264E7475EBF14F00362A16165827626D669D2E1C1A6401A4C81262377ADFD72988E92BF9F&uin=5338&fromtag=66"
+      );
     },
     prev() {
       console.log("上一曲");
@@ -66,7 +33,26 @@ new Vue({
       console.log("share");
     }
   },
+  computed: {
+    total() {
+      const s = this.duration % 60;
+      const m = (this.duration - s) / 60;
+      return `${m}:${s.toFixed(0)}`;
+    },
+    now() {
+      const s = this.currentTime % 60;
+      const m = (this.currentTime - s) / 60;
+      return `${m}:${s.toFixed(0)}`;
+    }
+  },
   mounted() {
-    console.log("挂在");
+    this.player.on("timeupdate", e => {
+      this.currentTime = e.currentTime;
+    });
+
+    this.player.on("play", e => {
+      console.log(e);
+      this.duration = e.duration;
+    });
   }
 });

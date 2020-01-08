@@ -49,6 +49,8 @@
   var player = new QMplayer({ target: "auto" }); // 设置 target=music 时会拉起QQ音乐客户端进行播放
 
   // 播放歌曲
+  // C400003IPDsn4ZWb5H
+  // C400000KNSyr1PmijP
   player.play("003IPDsn4ZWb5H");
 
   // 监听事件

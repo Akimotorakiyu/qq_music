@@ -56,15 +56,15 @@
             <div class="progress">
                 <div class="progress__top">
                     <div class="album-info">
-                        <div class="album-info__name">Norm Ender</div>
-                        <div class="album-info__track">Mekanın Sahibi</div>
+                        <div class="album-info__name">野狼disco </div>
+                        <div class="album-info__track">宝石Gem</div>
                     </div>
-                    <div class="progress__duration">00:39</div>
+                    <div class="progress__duration">{{total}}</div>
                 </div>
                 <div class="progress__bar">
-                    <div class="progress__current" style="width: 0%;"></div>
+                    <div class="progress__current" :style="`width: ${100*currentTime/duration}%;`"></div>
                 </div>
-                <div class="progress__time">00:00</div>
+                <div class="progress__time">{{now}}</div>
             </div>
             <div></div>
         </div>
@@ -165,9 +165,9 @@
         </defs>
     </svg>
 
+    <script src="player.js"></script>
     <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
     <script src="script.js"></script>
-
 
 </body>
 
